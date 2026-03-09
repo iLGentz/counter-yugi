@@ -9,6 +9,7 @@ import {
     Text,
     TextInput,
     View,
+    Keyboard,
 } from 'react-native';
 import { COLORS, FONT_MONO } from '../theme';
 
@@ -31,6 +32,7 @@ export const PlayerPanel: React.FC<Props> = ({
     const pulseAnim = useRef(new Animated.Value(1)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
     const isLowHP = lp > 0 && lp <= 2000;
+
 
     const accentColor = player === 1 ? COLORS.primaryGlow : COLORS.secondaryGlow;
 
@@ -90,6 +92,7 @@ export const PlayerPanel: React.FC<Props> = ({
     };
 
     const handleApply = (isAdd: boolean) => {
+        Keyboard.dismiss();
         const value = parseInt(inputValue, 10);
         if (!isNaN(value) && value > 0) {
             onApplyCustom(isAdd ? value : -value);
@@ -148,7 +151,7 @@ export const PlayerPanel: React.FC<Props> = ({
                         styles.btn,
                         { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
                     ]}
-                    onPress={() => handleApply(true)}
+                    onPressIn={() => handleApply(true)}
                 >
                     <Text style={[styles.btnText, { color: accentColor }]}>+</Text>
                 </Pressable>
@@ -157,7 +160,7 @@ export const PlayerPanel: React.FC<Props> = ({
                         styles.btn,
                         { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
                     ]}
-                    onPress={() => handleApply(false)}
+                    onPressIn={() => handleApply(false)}
                 >
                     <Text style={[styles.btnText, { color: accentColor }]}>−</Text>
                 </Pressable>

@@ -18,9 +18,10 @@ const styles = StyleSheet.create({
         zIndex: 10,
     },
     line: {
-        width: 2,
+        width: 200,
         height: '100%',
-        backgroundColor: COLORS.glassBorder,
+        // backgroundColor: COLORS.glassBorder,
+        backgroundColor: COLORS.primaryGlow,
         opacity: 0.3,
     },
 });
