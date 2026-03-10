@@ -4,6 +4,7 @@ import { BackgroundGrid } from './src/components/BackgroundGrid';
 import { PlayerPanel } from './src/components/PlayerPanel';
 import { HistoryLog } from './src/components/HistoryLog';
 import { WinnerOverlay } from './src/components/WinnerOverlay';
+import { QuickTools } from './src/components/QuickTools';
 import { COLORS } from './src/theme';
 import { HistoryEntry } from './src/types';
 import { Modal, Text, Pressable, ScrollView, TextInput } from 'react-native';
@@ -89,6 +90,8 @@ export default function App() {
       >
         <Text style={styles.settingsIcon}>⚙️</Text>
       </Pressable>
+
+      <QuickTools />
       <View style={styles.content}>
         <PlayerPanel
           player={1}

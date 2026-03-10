@@ -135,35 +135,41 @@ export const PlayerPanel: React.FC<Props> = ({
 
             {/* Custom Input */}
 
-            <View style={styles.inputRow}>
+            <View style={styles.controlsContainer}>
+
+
                 <TextInput
                     style={[styles.input, { borderColor: accentColor, color: accentColor }]}
                     value={inputValue}
                     onChangeText={setInputValue}
                     keyboardType="number-pad"
-                    placeholder="Custom"
                     placeholderTextColor={COLORS.textDim}
                     returnKeyType="done"
                     onSubmitEditing={() => handleApply(true)}
+                    autoCapitalize='none'
+                    selectionColor="transparent"
+
                 />
-                <Pressable
-                    style={({ pressed }) => [
-                        styles.btn,
-                        { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
-                    ]}
-                    onPressIn={() => handleApply(true)}
-                >
-                    <Text style={[styles.btnText, { color: accentColor }]}>+</Text>
-                </Pressable>
-                <Pressable
-                    style={({ pressed }) => [
-                        styles.btn,
-                        { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
-                    ]}
-                    onPressIn={() => handleApply(false)}
-                >
-                    <Text style={[styles.btnText, { color: accentColor }]}>−</Text>
-                </Pressable>
+                <View style={styles.buttonsRow}>
+                    <Pressable
+                        style={({ pressed }) => [
+                            styles.btn,
+                            { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
+                        ]}
+                        onPressIn={() => handleApply(true)}
+                    >
+                        <Text style={[styles.btnText, { color: accentColor }]}>+</Text>
+                    </Pressable>
+                    <Pressable
+                        style={({ pressed }) => [
+                            styles.btn,
+                            { borderColor: accentColor, opacity: pressed ? 0.7 : 1 },
+                        ]}
+                        onPressIn={() => handleApply(false)}
+                    >
+                        <Text style={[styles.btnText, { color: accentColor }]}>−</Text>
+                    </Pressable>
+                </View>
             </View>
         </View>
     );
@@ -210,29 +216,39 @@ const styles = StyleSheet.create({
         minWidth: 350,
         textAlign: 'center',
     },
-    inputRow: {
-        flexDirection: 'row',
+    controlsContainer: {
         alignItems: 'center',
-        gap: 8,
+        gap: 12,
         marginTop: 20,
+    },
+    buttonsRow: {
+        flexDirection: 'row',
+        gap: 12,
     },
     input: {
         backgroundColor: COLORS.glassLight,
         borderWidth: 2,
         paddingHorizontal: 14,
-        paddingVertical: 10,
+        paddingVertical: 8,
         fontSize: 18,
         fontFamily: FONT_MONO,
-        width: 130,
+        width: 156,
         textAlign: 'center',
+        height: 56,
     },
     btn: {
         backgroundColor: COLORS.glassLight,
         borderWidth: 2,
         paddingHorizontal: 22,
-        paddingVertical: 10,
-        minWidth: 56,
+        paddingVertical: 8,
+        minWidth: 72,
         alignItems: 'center',
+
+        justifyContent: 'center',
+
+
+        height: 56,
+
     },
     btnText: {
         fontFamily: FONT_MONO,
