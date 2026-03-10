@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View, StatusBar } from 'react-native';
 import { BackgroundGrid } from './src/components/BackgroundGrid';
 import { PlayerPanel } from './src/components/PlayerPanel';
-import { CenterDivider } from './src/components/CenterDivider';
 import { HistoryLog } from './src/components/HistoryLog';
 import { WinnerOverlay } from './src/components/WinnerOverlay';
 import { COLORS } from './src/theme';
@@ -90,7 +89,6 @@ export default function App() {
         />
       </View>
 
-      <CenterDivider />
 
       <HistoryLog history={history} />
 

@@ -178,12 +178,12 @@ const styles = StyleSheet.create({
         paddingVertical: 16,
     },
     player1Panel: {
-        borderRightWidth: 2,
-        borderRightColor: 'rgba(0, 212, 255, 0.3)',
+        // borderRightWidth: 2,
+        // borderRightColor: 'rgba(0, 212, 255, 0.3)',
     },
     player2Panel: {
-        borderLeftWidth: 2,
-        borderLeftColor: 'rgba(255, 0, 110, 0.3)',
+        // borderLeftWidth: 2,
+        // borderLeftColor: 'rgba(255, 0, 110, 0.3)',
     },
     playerName: {
         fontFamily: FONT_MONO,
