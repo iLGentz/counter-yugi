@@ -98,14 +98,18 @@ export default function App() {
       </Pressable>
 
       <ShowCoin
-        onCoinPress={() => setShowCoinFlip(prev => !prev)}
-        onDicePress={() => setShowDiceRoll(true)}
+        onCoinPress={() => 
+          {setShowCoinFlip(prev => !prev)
+            setShowDiceRoll(false)
+          }}
+
+        onDicePress={() => {
+          setShowDiceRoll(prev => !prev)
+          setShowCoinFlip(false)
+        }}
       />
 
-      <DiceRoll
-        visible={showDiceRoll}
-        onFinish={() => setShowDiceRoll(false)}
-      />
+
 
       <View style={styles.content}>
         <PlayerPanel
@@ -118,6 +122,10 @@ export default function App() {
         />
 
         {showCoinFlip && <CoinFlip />}
+
+        <DiceRoll
+          visible={showDiceRoll}
+        />
 
         <PlayerPanel
           player={2}
