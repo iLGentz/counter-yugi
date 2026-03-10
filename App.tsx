@@ -8,6 +8,7 @@ import { QuickTools } from './src/components/QuickTools';
 import { COLORS } from './src/theme';
 import { HistoryEntry } from './src/types';
 import { Modal, Text, Pressable, ScrollView, TextInput } from 'react-native';
+import { CoinFlip } from './src/components/CoinFlip';
 
 const COLOR_OPTIONS = [
   '#00d4ff', // Cyan
@@ -24,6 +25,8 @@ export default function App() {
   const [p2LP, setP2LP] = useState(8000);
   const [p1Name, setP1Name] = useState('Player 1');
   const [p2Name, setP2Name] = useState('Player 2');
+  const [showCoinFlip, setShowCoinFlip] = useState(false);
+  const [showDiceRoll, setShowDiceRoll] = useState(false)
   const [p1Color, setP1Color] = useState<string>(COLORS.primaryGlow);
   const [p2Color, setP2Color] = useState<string>(COLORS.secondaryGlow);
   const [history, setHistory] = useState<HistoryEntry[]>([]);
@@ -72,6 +75,8 @@ export default function App() {
     }
   };
 
+
+
   const resetGame = () => {
     setP1LP(8000);
     setP2LP(8000);
@@ -91,7 +96,8 @@ export default function App() {
         <Text style={styles.settingsIcon}>⚙️</Text>
       </Pressable>
 
-      <QuickTools />
+      <QuickTools onCoinPress={() => setShowCoinFlip(prev => !prev)} onDicePress={() => setShowDiceRoll(prev => !prev)} />
+
       <View style={styles.content}>
         <PlayerPanel
           player={1}
@@ -100,8 +106,10 @@ export default function App() {
           accentColor={p1Color}
           onNameChange={setP1Name}
           onApplyCustom={(val) => updateLP(1, val)}
-
         />
+
+        {showCoinFlip && <CoinFlip />}
+        {showDiceRoll && <CoinFlip />}
 
         <PlayerPanel
           player={2}

@@ -7,8 +7,14 @@ import {
     View,
 } from 'react-native';
 import { COLORS, FONT_MONO } from '../theme';
+import { CoinFlip } from './CoinFlip';
 
-export const QuickTools: React.FC = () => {
+interface Prop{
+    onCoinPress: () => void;
+    onDicePress: () => void;
+}
+
+export const QuickTools: React.FC<Prop> = ({onCoinPress , onDicePress}) => {
     const [diceResult, setDiceResult] = useState<number | null>(null);
     const [coinResult, setCoinResult] = useState<'T' | 'C' | null>(null);
     const [isRollingDice, setIsRollingDice] = useState(false);
@@ -85,17 +91,11 @@ export const QuickTools: React.FC = () => {
                         styles.toolBtn,
                         { opacity: pressed || isRollingDice ? 0.7 : 1 }
                     ]}
-                    onPress={rollDice}
+                    onPress={onCoinPress}
                 >
-                    <Animated.Text style={[styles.icon, { transform: [{ rotate: diceRotate }] }]}>
-                        🎲
-                    </Animated.Text>
+                    <Text style={{ color: "red" }}>moneta</Text>
                 </Pressable>
-                {diceResult !== null && (
-                    <View style={styles.resultBadge}>
-                        <Text style={styles.resultText}>{diceResult}</Text>
-                    </View>
-                )}
+
             </View>
 
             <View style={styles.toolSection}>
@@ -104,17 +104,12 @@ export const QuickTools: React.FC = () => {
                         styles.toolBtn,
                         { opacity: pressed || isFlippingCoin ? 0.7 : 1 }
                     ]}
-                    onPress={flipCoin}
+                    onPress={onDicePress}
                 >
-                    <Animated.Text style={[styles.icon, { transform: [{ scale: coinScale }] }]}>
-                        🪙
-                    </Animated.Text>
+                    <Text style={{ color: "red" }}>dado</Text>
+
                 </Pressable>
-                {coinResult !== null && (
-                    <View style={styles.resultBadge}>
-                        <Text style={styles.resultText}>{coinResult}</Text>
-                    </View>
-                )}
+
             </View>
         </View>
     );
