@@ -17,6 +17,7 @@ interface Props {
     player: 1 | 2;
     name: string;
     lp: number;
+    accentColor: string;
     onNameChange: (newName: string) => void;
     onApplyCustom: (amount: number) => void;
 }
@@ -25,6 +26,7 @@ export const PlayerPanel: React.FC<Props> = ({
     player,
     name,
     lp,
+    accentColor,
     onNameChange,
     onApplyCustom,
 }) => {
@@ -32,9 +34,6 @@ export const PlayerPanel: React.FC<Props> = ({
     const pulseAnim = useRef(new Animated.Value(1)).current;
     const opacityAnim = useRef(new Animated.Value(1)).current;
     const isLowHP = lp > 0 && lp <= 2000;
-
-
-    const accentColor = player === 1 ? COLORS.primaryGlow : COLORS.secondaryGlow;
 
     useEffect(() => {
         if (isLowHP) {
@@ -135,6 +134,7 @@ export const PlayerPanel: React.FC<Props> = ({
             </View>
 
             {/* Custom Input */}
+
             <View style={styles.inputRow}>
                 <TextInput
                     style={[styles.input, { borderColor: accentColor, color: accentColor }]}
@@ -187,7 +187,7 @@ const styles = StyleSheet.create({
     },
     playerName: {
         fontFamily: FONT_MONO,
-        fontSize: 18,
+        fontSize: 38,
         letterSpacing: 4,
         textTransform: 'uppercase',
         marginBottom: 16,
@@ -195,7 +195,7 @@ const styles = StyleSheet.create({
     },
     lpContainer: {
         alignItems: 'center',
-        marginVertical: 10,
+        marginVertical: 50,
     },
     lpLabel: {
         fontFamily: FONT_MONO,
@@ -207,9 +207,7 @@ const styles = StyleSheet.create({
     lpDisplay: {
         fontFamily: FONT_MONO,
         fontWeight: 'bold',
-        textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 30,
-        minWidth: 300,
+        minWidth: 350,
         textAlign: 'center',
     },
     inputRow: {
