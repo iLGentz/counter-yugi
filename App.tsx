@@ -4,11 +4,12 @@ import { BackgroundGrid } from './src/components/BackgroundGrid';
 import { PlayerPanel } from './src/components/PlayerPanel';
 import { HistoryLog } from './src/components/HistoryLog';
 import { WinnerOverlay } from './src/components/WinnerOverlay';
-import { QuickTools } from './src/components/QuickTools';
+import { ShowCoin } from './src/components/ShowCoin';
 import { COLORS } from './src/theme';
 import { HistoryEntry } from './src/types';
 import { Modal, Text, Pressable, ScrollView, TextInput } from 'react-native';
 import { CoinFlip } from './src/components/CoinFlip';
+import { DiceRoll } from './src/components/DiceRoll';
 
 const COLOR_OPTIONS = [
   '#00d4ff', // Cyan
@@ -96,7 +97,15 @@ export default function App() {
         <Text style={styles.settingsIcon}>⚙️</Text>
       </Pressable>
 
-      <QuickTools onCoinPress={() => setShowCoinFlip(prev => !prev)} onDicePress={() => setShowDiceRoll(prev => !prev)} />
+      <ShowCoin
+        onCoinPress={() => setShowCoinFlip(prev => !prev)}
+        onDicePress={() => setShowDiceRoll(true)}
+      />
+
+      <DiceRoll
+        visible={showDiceRoll}
+        onFinish={() => setShowDiceRoll(false)}
+      />
 
       <View style={styles.content}>
         <PlayerPanel
@@ -109,7 +118,6 @@ export default function App() {
         />
 
         {showCoinFlip && <CoinFlip />}
-        {showDiceRoll && <CoinFlip />}
 
         <PlayerPanel
           player={2}
