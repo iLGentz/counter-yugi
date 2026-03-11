@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from 'react-native-reanimated';
 
+
 const SIZE = 250;
 type Face = 'testa' | 'croce';
 
@@ -102,32 +103,4 @@ export const CoinFlipNew = forwardRef<CoinFlipHandle, CoinFlipProps>(
   }
 );
 
-const styles = StyleSheet.create({
-  wrapper: {
-    position: 'absolute',
-    top: 0, left: 0, right: 0, bottom: 0,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  coinContainer: {
-    width: SIZE,
-    height: SIZE,
-  },
-  face: {
-    position: 'absolute',
-    width: SIZE,
-    height: SIZE,
-    borderRadius: SIZE / 2,
-    backfaceVisibility: 'hidden',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 10 },
-    shadowOpacity: 0.6,
-    shadowRadius: 12,
-  },
-  faceImage: {
-    width: SIZE,
-    height: SIZE,
-    borderRadius: SIZE / 2,
-    resizeMode: 'cover',
-  },
-});
+import { coinFlipStyles as styles } from '../styles';

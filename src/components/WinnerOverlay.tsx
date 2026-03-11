@@ -9,6 +9,7 @@ interface Props {
     onReset: () => void;
 }
 
+
 export const WinnerOverlay: React.FC<Props> = ({
     visible,
     winnerName,
@@ -50,38 +51,4 @@ export const WinnerOverlay: React.FC<Props> = ({
     );
 };
 
-const styles = StyleSheet.create({
-    overlay: {
-        flex: 1,
-        backgroundColor: COLORS.overlay,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    content: {
-        alignItems: 'center',
-    },
-    winnerText: {
-        fontFamily: FONT_MONO,
-        fontSize: 64,
-        fontWeight: 'bold',
-        textTransform: 'uppercase',
-        letterSpacing: 8,
-        marginBottom: 40,
-        textShadowOffset: { width: 0, height: 0 },
-        textShadowRadius: 30,
-        textAlign: 'center',
-    },
-    resetBtn: {
-        borderWidth: 2,
-        paddingHorizontal: 24,
-        paddingVertical: 12,
-        marginTop: 20,
-    },
-    resetBtnText: {
-        color: COLORS.textMain,
-        fontFamily: FONT_MONO,
-        fontSize: 16,
-        letterSpacing: 3,
-        textTransform: 'uppercase',
-    },
-});
+import { winnerOverlayStyles as styles } from '../styles';

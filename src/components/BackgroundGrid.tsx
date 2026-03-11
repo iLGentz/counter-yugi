@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from 'react';
-import { Animated, Dimensions, StyleSheet, View } from 'react-native';
+import { Animated, Dimensions, View } from 'react-native';
 import { COLORS } from '../theme';
 
 const GRID_SIZE = 50;
@@ -59,22 +59,4 @@ export const BackgroundGrid: React.FC = () => {
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        ...StyleSheet.absoluteFillObject,
-        top: -GRID_SIZE,
-        left: -GRID_SIZE,
-    },
-    line: {
-        position: 'absolute',
-        backgroundColor: 'rgba(0, 212, 255, 0.05)',
-    },
-    vertical: {
-        width: 1,
-        height: '120%',
-    },
-    horizontal: {
-        height: 1,
-        width: '120%',
-    },
-});
+import { backgroundGridStyles as styles } from '../styles';

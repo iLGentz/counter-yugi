@@ -3,6 +3,7 @@ import { FlatList, StyleSheet, Text, View, Dimensions } from 'react-native';
 import { COLORS, FONT_MONO } from '../theme';
 import { HistoryEntry } from '../types';
 
+
 interface Props {
     history: HistoryEntry[];
     p1Color: string;
@@ -20,7 +21,7 @@ export const HistoryLog: React.FC<Props> = ({ history, p1Color, p2Color }) => {
                     {item.playerName}
                 </Text>
                 <Text
-                
+
                     style={[
                         styles.change,
                         { color: item.change > 0 ? COLORS.positive : COLORS.negative },
@@ -47,54 +48,4 @@ export const HistoryLog: React.FC<Props> = ({ history, p1Color, p2Color }) => {
         </View>
     );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        position: 'absolute',
-        bottom: 20,
-        left: '50%',
-        marginLeft: -250, // Center manually for fixed width
-        width: 500,
-        height: 150,
-        backgroundColor: COLORS.glassLight,
-        borderWidth: 1,
-        borderColor: COLORS.glassBorder,
-        padding: 10,
-        zIndex: 5,
-    },
-    listContent: {
-        paddingBottom: 0,
-    },
-    item: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        paddingVertical: 8,
-        paddingHorizontal: 12,
-        marginBottom: 6,
-        borderLeftWidth: 3,
-        backgroundColor: 'rgba(255, 255, 255, 0.02)',
-    },
-    playerName: {
-        fontFamily: FONT_MONO,
-        fontSize: 14,
-        width: 100,
-        textTransform: 'uppercase',
-    },
-    change: {
-        fontFamily: FONT_MONO,
-        fontSize: 16,
-        fontWeight: 'bold',
-        width: 80,
-        textAlign: 'center',
-    },
-    arrow: {
-        color: COLORS.textDim,
-        fontSize: 14,
-        marginHorizontal: 10,
-    },
-    prevLP: {
-        fontFamily: FONT_MONO,
-        fontSize: 16,
-        fontWeight: 'bold',
-    },
-});
+import { historyLogStyles as styles } from '../styles';

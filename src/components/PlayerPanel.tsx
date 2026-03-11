@@ -15,6 +15,7 @@ import {
 } from 'react-native';
 import { COLORS, FONT_MONO } from '../theme';
 
+
 interface Props {
     player: 1 | 2;
     name: string;
@@ -108,7 +109,7 @@ export const PlayerPanel: React.FC<Props> = ({
         <View
             style={[
                 styles.panel,
-                player === 1 ? styles.player1Panel : styles.player2Panel,
+                //player === 1 ? styles.player1Panel : styles.player2Panel,
             ]}
         >
             {/* Player Name */}
@@ -177,84 +178,4 @@ export const PlayerPanel: React.FC<Props> = ({
     );
 };
 
-const styles = StyleSheet.create({
-    panel: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        paddingHorizontal: 20,
-        paddingVertical: 16,
-    },
-    player1Panel: {
-        // borderRightWidth: 2,
-        // borderRightColor: 'rgba(0, 212, 255, 0.3)',
-    },
-    player2Panel: {
-        // borderLeftWidth: 2,
-        // borderLeftColor: 'rgba(255, 0, 110, 0.3)',
-    },
-    playerName: {
-        fontFamily: FONT_MONO,
-        fontSize: 38,
-        letterSpacing: 4,
-        textTransform: 'uppercase',
-        marginBottom: 16,
-        opacity: 0.8,
-    },
-    lpContainer: {
-        alignItems: 'center',
-        marginVertical: 50,
-    },
-    lpLabel: {
-        fontFamily: FONT_MONO,
-        fontSize: 14,
-        letterSpacing: 3,
-        opacity: 0.5,
-        marginBottom: 4,
-    },
-    lpDisplay: {
-        fontFamily: FONT_MONO,
-        fontWeight: 'bold',
-        minWidth: 350,
-        textAlign: 'center',
-    },
-    controlsContainer: {
-        alignItems: 'center',
-        gap: 12,
-        marginTop: 20,
-    },
-    buttonsRow: {
-        flexDirection: 'row',
-        gap: 12,
-    },
-    input: {
-        backgroundColor: COLORS.glassLight,
-        borderWidth: 2,
-        paddingHorizontal: 14,
-        paddingVertical: 8,
-        fontSize: 18,
-        fontFamily: FONT_MONO,
-        width: 156,
-        textAlign: 'center',
-        height: 56,
-    },
-    btn: {
-        backgroundColor: COLORS.glassLight,
-        borderWidth: 2,
-        paddingHorizontal: 22,
-        paddingVertical: 8,
-        minWidth: 72,
-        alignItems: 'center',
-
-        justifyContent: 'center',
-
-
-        height: 56,
-
-    },
-    btnText: {
-        fontFamily: FONT_MONO,
-        fontSize: 22,
-        fontWeight: 'bold',
-    },
-});
+import { playerPanelStyles as styles } from '../styles';
