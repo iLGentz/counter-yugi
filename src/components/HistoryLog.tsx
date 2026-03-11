@@ -5,19 +5,22 @@ import { HistoryEntry } from '../types';
 
 interface Props {
     history: HistoryEntry[];
+    p1Color: string;
+    p2Color: string;
 }
 
-export const HistoryLog: React.FC<Props> = ({ history }) => {
+export const HistoryLog: React.FC<Props> = ({ history, p1Color, p2Color }) => {
     const renderItem = ({ item }: { item: HistoryEntry }) => {
         const isP1 = item.player === 1;
-        const accentColor = isP1 ? COLORS.primaryGlow : COLORS.secondaryGlow;
+        const accentColor = isP1 ? p1Color : p2Color;
 
         return (
-            <View style={[styles.item, isP1 ? styles.p1Item : styles.p2Item]}>
+            <View style={[styles.item, { borderLeftColor: accentColor }]}>
                 <Text style={[styles.playerName, { color: accentColor }]}>
                     {item.playerName}
                 </Text>
                 <Text
+                
                     style={[
                         styles.change,
                         { color: item.change > 0 ? COLORS.positive : COLORS.negative },
@@ -70,12 +73,6 @@ const styles = StyleSheet.create({
         marginBottom: 6,
         borderLeftWidth: 3,
         backgroundColor: 'rgba(255, 255, 255, 0.02)',
-    },
-    p1Item: {
-        borderLeftColor: COLORS.primaryGlow,
-    },
-    p2Item: {
-        borderLeftColor: COLORS.secondaryGlow,
     },
     playerName: {
         fontFamily: FONT_MONO,

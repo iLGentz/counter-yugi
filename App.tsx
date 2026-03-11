@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View, StatusBar, KeyboardAvoidingView, Platform } from 'react-native';
 import { BackgroundGrid } from './src/components/BackgroundGrid';
 import { PlayerPanel } from './src/components/PlayerPanel';
 import { HistoryLog } from './src/components/HistoryLog';
 import { WinnerOverlay } from './src/components/WinnerOverlay';
-import { ShowCoin } from './src/components/ShowCoin';
+import { QuickTool } from './src/components/QuickTool';
 import { COLORS } from './src/theme';
 import { HistoryEntry } from './src/types';
 import { Modal, Text, Pressable, ScrollView, TextInput } from 'react-native';
-import { CoinFlip } from './src/components/CoinFlip';
 import { DiceRoll } from './src/components/DiceRoll';
-
+import { AntDesign } from '@expo/vector-icons';
+import { CoinFlipNew, CoinFlipHandle } from './src/components/FlipCoinNew';
+import { Asset } from 'expo-asset';
 const COLOR_OPTIONS = [
   '#00d4ff', // Cyan
   '#ff006e', // Pink
@@ -20,6 +21,7 @@ const COLOR_OPTIONS = [
   '#fb923c', // Orange
   '#ffffff', // White
 ];
+
 
 export default function App() {
   const [p1LP, setP1LP] = useState(8000);
@@ -33,6 +35,11 @@ export default function App() {
   const [history, setHistory] = useState<HistoryEntry[]>([]);
   const [winner, setWinner] = useState<1 | 2 | null>(null);
   const [isSettingsVisible, setIsSettingsVisible] = useState(false);
+  const coinRef = useRef<CoinFlipHandle>(null);
+  const [ready, setReady] = useState(false)
+
+  const testaAsset = require('./assets/testa.png');
+  const croceAsset = require('./assets/croce.png');
 
   const updateLP = (player: 1 | 2, amount: number) => {
     if (player === 1) {
@@ -85,6 +92,11 @@ export default function App() {
     setWinner(null);
   };
 
+  useEffect(() => {
+    Asset.loadAsync([testaAsset, croceAsset]).then(() => setShowCoinFlip(false));
+  }, []);
+
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar hidden />
@@ -94,14 +106,15 @@ export default function App() {
         style={styles.settingsBtn}
         onPress={() => setIsSettingsVisible(true)}
       >
-        <Text style={styles.settingsIcon}>⚙️</Text>
+        {/* <Text style={styles.settingsIcon}>⚙️</Text> */}
+        <AntDesign name="setting" size={24} color={'#ffffff91'} />
       </Pressable>
 
-      <ShowCoin
-        onCoinPress={() => 
-          {setShowCoinFlip(prev => !prev)
-            setShowDiceRoll(false)
-          }}
+      <QuickTool
+        onCoinPress={() => {
+          setShowCoinFlip(prev => !prev)
+          setShowDiceRoll(false)
+        }}
 
         onDicePress={() => {
           setShowDiceRoll(prev => !prev)
@@ -121,7 +134,12 @@ export default function App() {
           onApplyCustom={(val) => updateLP(1, val)}
         />
 
-        {showCoinFlip && <CoinFlip />}
+        {showCoinFlip && <CoinFlipNew
+          ref={coinRef}
+          testaImage={testaAsset}
+          croceImage={croceAsset}
+          onResult={(face) => console.log(face)}
+        />}
 
         <DiceRoll
           visible={showDiceRoll}
@@ -137,7 +155,7 @@ export default function App() {
         />
 
       </View>
-      <HistoryLog history={history} />
+      <HistoryLog history={history} p1Color={p1Color} p2Color={p2Color} />
 
       <Modal
         visible={isSettingsVisible}

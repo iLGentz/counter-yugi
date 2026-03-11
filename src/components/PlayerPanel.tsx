@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { AntDesign } from '@expo/vector-icons';
+
 import {
     Alert,
     Animated,
@@ -158,7 +160,7 @@ export const PlayerPanel: React.FC<Props> = ({
                         ]}
                         onPressIn={() => handleApply(true)}
                     >
-                        <Text style={[styles.btnText, { color: accentColor }]}>+</Text>
+                        <AntDesign name="plus" size={20} color={accentColor} />
                     </Pressable>
                     <Pressable
                         style={({ pressed }) => [
@@ -167,7 +169,7 @@ export const PlayerPanel: React.FC<Props> = ({
                         ]}
                         onPressIn={() => handleApply(false)}
                     >
-                        <Text style={[styles.btnText, { color: accentColor }]}>−</Text>
+                        <AntDesign name="minus" size={20} color={accentColor} />
                     </Pressable>
                 </View>
             </View>
